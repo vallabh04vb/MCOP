@@ -14,7 +14,7 @@ function App() {
     <Router>
       <div className="flex">
         <Navbar />
-        <div className="flex-1 ml-64">
+        <div className="flex-1 md:ml-64">
           <ScrollProgress />
           <Routes>
             <Route path="/" element={<Home />} />
