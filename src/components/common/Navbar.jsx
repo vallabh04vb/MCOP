@@ -52,12 +52,13 @@ const Navbar = () => {
     }
   ];
 
-  // Close menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
+      if (!event.target.closest('.nav-dropdown') && !event.target.closest('.mobile-menu')) {
+        setActiveDropdown(null);
+      }
       if (!event.target.closest('.mobile-menu') && !event.target.closest('.menu-button')) {
         setIsOpen(false);
-        setActiveDropdown(null);
       }
     };
 
@@ -65,16 +66,20 @@ const Navbar = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Close mobile menu when route changes
   useEffect(() => {
     setIsOpen(false);
     setActiveDropdown(null);
   }, [location]);
 
-  const handleMobileNavigation = (path) => {
+  const handleNavigation = (path) => {
     navigate(path);
-    setIsOpen(false);
     setActiveDropdown(null);
+    setIsOpen(false);
+  };
+
+  const handleDropdownToggle = (title, event) => {
+    event.stopPropagation();
+    setActiveDropdown(activeDropdown === title ? null : title);
   };
 
   return (
@@ -90,7 +95,7 @@ const Navbar = () => {
             {navItems.map((item) => (
               <div key={item.title} className="relative nav-dropdown">
                 <button
-                  onClick={() => setActiveDropdown(activeDropdown === item.title ? null : item.title)}
+                  onClick={(e) => handleDropdownToggle(item.title, e)}
                   className="flex items-center text-white hover:text-blue-400 transition-colors duration-300"
                 >
                   {item.title}
@@ -100,11 +105,11 @@ const Navbar = () => {
                 </button>
 
                 {activeDropdown === item.title && (
-                  <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2">
+                  <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50">
                     {item.dropdownItems.map((dropItem) => (
                       <button
                         key={dropItem.title}
-                        onClick={() => handleMobileNavigation(dropItem.path)}
+                        onClick={() => handleNavigation(dropItem.path)}
                         className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-blue-50 hover:text-blue-600"
                       >
                         {dropItem.title}
@@ -131,7 +136,7 @@ const Navbar = () => {
             {navItems.map((item) => (
               <div key={item.title} className="py-2">
                 <button
-                  onClick={() => setActiveDropdown(activeDropdown === item.title ? null : item.title)}
+                  onClick={(e) => handleDropdownToggle(item.title, e)}
                   className="flex items-center justify-between w-full text-white hover:text-blue-400"
                 >
                   {item.title}
@@ -144,7 +149,7 @@ const Navbar = () => {
                     {item.dropdownItems.map((dropItem) => (
                       <button
                         key={dropItem.title}
-                        onClick={() => handleMobileNavigation(dropItem.path)}
+                        onClick={() => handleNavigation(dropItem.path)}
                         className="block w-full text-left text-gray-300 hover:text-blue-400 py-2"
                       >
                         {dropItem.title}
