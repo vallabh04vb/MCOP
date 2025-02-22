@@ -4,6 +4,7 @@ import Gallery from '../../components/Gallery/Gallery';
 import TestimonialCarousel from '../../components/Testimonials/TestimonialCarousel';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import StatCounter from '../../components/Statistics/StatCounter';
 
 const Home = () => {
   useEffect(() => {
@@ -43,25 +44,13 @@ const Home = () => {
       </section>
 
       {/* Statistics Section */}
-      <section className="py-16 bg-blue-600 text-white">
+      <section className="py-16 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div data-aos="fade-up">
-              <h3 className="text-4xl font-bold mb-2">500+</h3>
-              <p>Delegates</p>
-            </div>
-            <div data-aos="fade-up" data-aos-delay="100">
-              <h3 className="text-4xl font-bold mb-2">20+</h3>
-              <p>Countries</p>
-            </div>
-            <div data-aos="fade-up" data-aos-delay="200">
-              <h3 className="text-4xl font-bold mb-2">15+</h3>
-              <p>Committees</p>
-            </div>
-            <div data-aos="fade-up" data-aos-delay="300">
-              <h3 className="text-4xl font-bold mb-2">10+</h3>
-              <p>Years Experience</p>
-            </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <StatCounter end={500} title="Delegates" />
+            <StatCounter end={20} title="Countries" />
+            <StatCounter end={15} title="Committees" />
+            <StatCounter end={10} title="Years Experience" />
           </div>
         </div>
       </section>
