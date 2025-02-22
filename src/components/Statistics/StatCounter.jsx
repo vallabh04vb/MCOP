@@ -1,38 +1,60 @@
-import { motion } from 'framer-motion';
-import CountUp from 'react-countup';
 import { useInView } from 'react-intersection-observer';
+import CountUp from 'react-countup';
+import { motion } from 'framer-motion';
 
-const StatCounter = ({ end, title }) => {
-  const [ref, inView] = useInView({
-    threshold: 0.3,
-    triggerOnce: true
+const StatCounter = () => {
+  const { ref, inView } = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
   });
 
+  const stats = [
+    {
+      number: 65000,
+      label: "Community Members",
+      suffix: "+"
+    },
+    {
+      number: 40,
+      label: "Countries Represented",
+      suffix: "+"
+    },
+    {
+      number: 100,
+      label: "Events Organized",
+      suffix: "+"
+    }
+  ];
+
   return (
-    <motion.div
-      ref={ref}
-      initial={{ y: 50, opacity: 0 }}
-      animate={inView ? { y: 0, opacity: 1 } : {}}
-      transition={{ duration: 0.5 }}
-      className="text-center"
-    >
-      <motion.div
-        className="text-5xl md:text-6xl font-bold mb-2"
-        initial={{ scale: 0.5 }}
-        animate={inView ? { scale: 1 } : {}}
-        transition={{ duration: 0.5 }}
-      >
-        {inView ? (
-          <CountUp
-            end={end}
-            duration={2.5}
-            separator=","
-            suffix="+"
-          />
-        ) : '0+'}
-      </motion.div>
-      <div className="text-lg md:text-xl text-blue-100">{title}</div>
-    </motion.div>
+    <div className="py-20 bg-gray-900">
+      <div className="container mx-auto px-4">
+        <div ref={ref} className="grid md:grid-cols-3 gap-8">
+          {stats.map((stat, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.2 }}
+              className="text-center"
+            >
+              <div className="text-5xl font-bold text-blue-400 mb-2">
+                {inView ? (
+                  <CountUp
+                    end={stat.number}
+                    duration={2.5}
+                    suffix={stat.suffix}
+                  />
+                ) : (
+                  `0${stat.suffix}`
+                )}
+              </div>
+              <p className="text-gray-300 text-lg">{stat.label}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 };
 

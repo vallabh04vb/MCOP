@@ -1,68 +1,69 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useEffect, useRef } from 'react';
+import React from 'react';
+import { motion } from 'framer-motion';
 
 const Hero = () => {
-  const { scrollY } = useScroll();
-  const ref = useRef(null);
-
-  const opacity = useTransform(scrollY, [0, 400], [1, 0]);
-  const textY = useTransform(scrollY, [0, 400], [0, 200]);
-
   return (
-    <div className="relative min-h-screen">
-      {/* Fixed Background */}
-      <div 
-        className="fixed inset-0 w-full h-screen z-0"
-        style={{ 
-          backgroundImage: `url('https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=2000')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed'
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/70" />
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background with placeholder image */}
+      <div className="absolute inset-0 z-0">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ 
+            backgroundImage: "url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2013&q=80')"
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-900/70 to-gray-900/90" />
       </div>
-
-      {/* Hero Content */}
-      <motion.div 
-        style={{ opacity }}
-        className="relative z-10 h-screen flex items-center justify-center"
+      
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        className="relative z-10 text-center px-4 max-w-5xl mx-auto"
       >
-        <motion.div 
-          style={{ y: textY }}
-          className="text-center px-4 max-w-4xl mx-auto"
+        <motion.h1 
+          className="text-5xl md:text-7xl font-bold text-white mb-6"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
         >
-          <motion.h1 
-            className="text-6xl md:text-8xl font-bold mb-6"
-            initial={{ scale: 0.5, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.8 }}
-          >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-white">
-              Model United Nations
-            </span>
-          </motion.h1>
-          <motion.p
-            className="text-xl md:text-3xl mb-8 text-blue-200"
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-          >
-            Shaping Tomorrow's Leaders Today
-          </motion.p>
-          <motion.button
-            className="bg-blue-600/80 backdrop-blur-sm text-white px-8 py-4 rounded-full 
-                     hover:bg-blue-700 transition-all duration-300 transform hover:scale-105
-                     shadow-lg hover:shadow-blue-500/50"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Register Now
-          </motion.button>
+          Model Conference of Parties
+        </motion.h1>
+        <motion.p 
+          className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+        >
+          Join the Global Youth Movement for Climate Action
+        </motion.p>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="flex flex-col sm:flex-row gap-4 justify-center"
+        >
+          <button className="bg-blue-600 text-white px-8 py-3 rounded-full text-lg font-medium hover:bg-blue-700 transition-all duration-300 transform hover:scale-105">
+            Join Competition
+          </button>
+          <button className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full text-lg font-medium hover:bg-white hover:text-gray-900 transition-all duration-300">
+            Learn More
+          </button>
         </motion.div>
+      </motion.div>
+
+      {/* Scroll Indicator */}
+      <motion.div 
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        animate={{ y: [0, 10, 0] }}
+        transition={{ repeat: Infinity, duration: 1.5 }}
+      >
+        <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
+          <div className="w-1 h-3 bg-white rounded-full mt-2" />
+        </div>
       </motion.div>
     </div>
   );
 };
 
-export default Hero; 
+export default Hero;
