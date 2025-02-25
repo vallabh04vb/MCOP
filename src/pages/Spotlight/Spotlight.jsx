@@ -1,5 +1,8 @@
 import { motion } from 'framer-motion';
 import SpotlightSlider from '../../components/About/Spotlight/SpotlightSlider';
+import StatCounter from '../../components/About/Stats/StatCounter';
+import FoundersMessage from '../../components/About/FoundersAddress/FoundersMessage';
+import LuminaryGrid from '../../components/About/Luminaries/LuminaryGrid';
 
 const Spotlight = () => {
   return (

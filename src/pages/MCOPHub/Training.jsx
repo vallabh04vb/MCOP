@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import TrainingModules from '../../components/Resources/Training/TrainingModules';
+import TrainingModules from '../../components/MCOPHub/Training/TrainingModules';
 
 const Training = () => {
   return (

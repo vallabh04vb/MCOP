@@ -10,29 +10,23 @@ const Navbar = () => {
 
   const navItems = [
     {
-      title: "About",
-      path: "/about",
+      title: "Spotlight",
+      path: "/spotlight",
+    },
+    { 
+      title: 'Events',
+      path: '/events',
       dropdownItems: [
-        { title: "Stats", path: "/about/stats" },
-        { title: "Founder's Address", path: "/about/founders-address" },
-        { title: "Luminaries", path: "/about/luminaries" },
-        { title: "Spotlight", path: "/about/spotlight" }
+        { title: 'Upcoming Events', path: '/events/upcoming' },
+        { title: 'Past Events', path: '/events/past' }
       ]
     },
     { 
-      title: 'Calendar',
-      path: '/calendar',
+      title: 'MCOP HUB',
+      path: '/mcop-hub',
       dropdownItems: [
-        { title: 'Upcoming Events', path: '/calendar/upcoming' },
-        { title: 'Past Events', path: '/calendar/past' }
-      ]
-    },
-    { 
-      title: 'Resources',
-      path: '/resources',
-      dropdownItems: [
-        { title: 'Training', path: '/resources/training' },
-        { title: 'SOP/ROP', path: '/resources/sop-rop' }
+        { title: 'SOP/ROP', path: '/mcop-hub/sop-rop' },
+        { title: 'Training', path: '/mcop-hub/training' }
       ]
     },
     { 

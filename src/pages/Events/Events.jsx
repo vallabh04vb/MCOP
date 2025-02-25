@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
-import GoogleCalendar from '../../components/Calendar/GoogleCalendar';
-import UpcomingEvents from '../../components/Calendar/UpcomingEvents';
+import GoogleEvents from '../../components/Events/GoogleEvents';
+import UpcomingEvents from '../../components/Events/UpcomingEvents';
 
-const Calendar = () => {
+const Events = () => {
   return (
     <div className="min-h-screen bg-gray-900 pt-20">
       <div className="container mx-auto px-4">
@@ -21,7 +21,7 @@ const Calendar = () => {
 
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
-            <GoogleCalendar />
+            <GoogleEvents />
           </div>
           <div className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-6">
             <h2 className="text-2xl font-bold text-white mb-6">Quick Links</h2>
@@ -53,4 +53,4 @@ const Calendar = () => {
   );
 };
 
-export default Calendar;
+export default Events;

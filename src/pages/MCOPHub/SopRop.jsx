@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import DocumentViewer from '../../components/Resources/SopRop/DocumentViewer';
-import DownloadButton from '../../components/Resources/SopRop/DownloadButton';
+import DocumentViewer from '../../components/MCOPHub/SopRop/DocumentViewer';
+import DownloadButton from '../../components/MCOPHub/SopRop/DownloadButton';
 
 const SopRop = () => {
   const documents = [
