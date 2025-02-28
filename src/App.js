@@ -12,6 +12,8 @@ import Announcements from './pages/Updates/Announcements';
 import Footer from './components/common/Footer';
 import ScrollProgress from './components/common/ScrollProgress';
 import './App.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const App = () => {
   return (

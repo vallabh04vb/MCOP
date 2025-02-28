@@ -5,6 +5,7 @@ import FoundersMessage from '../../components/About/FoundersAddress/FoundersMess
 import LuminaryGrid from '../../components/About/Luminaries/LuminaryGrid';
 
 const Spotlight = () => {
+  console.log("Spotlight component rendered"); // Debug log
   return (
     <div className="min-h-screen bg-gray-900 pt-20">
       <div className="container mx-auto px-4">

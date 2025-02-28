@@ -1,6 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
 
 html {
   scroll-behavior: smooth;
@@ -130,4 +132,24 @@ code {
 ::-webkit-scrollbar {
   width: 0px;
   background: transparent;
+}
+/* Add this to your CSS file */
+.upcoming-events-carousel {
+  margin: 20px 0;
+}
+
+.event-slide {
+  position: relative;
+}
+
+.event-slide img {
+  border-radius: 10px;
+}
+
+.event-slide h3 {
+  font-size: 1.5rem;
+}
+
+.event-slide p {
+  margin: 5px 0;
 }

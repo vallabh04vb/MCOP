@@ -9,9 +9,13 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const navItems = [
-    {
-      title: "Spotlight",
-      path: "/spotlight",
+    { 
+      title: 'MCOP HUB',
+      path: '/mcop-hub',
+      dropdownItems: [
+        { title: 'SOP/ROP', path: '/mcop-hub/sop-rop' },
+        { title: 'Training', path: '/mcop-hub/training' }
+      ]
     },
     { 
       title: 'Events',
@@ -21,13 +25,12 @@ const Navbar = () => {
         { title: 'Past Events', path: '/events/past' }
       ]
     },
-    { 
-      title: 'MCOP HUB',
-      path: '/mcop-hub',
+    {
+      title: "Spotlight",
+      path: "/spotlight",
       dropdownItems: [
-        { title: 'SOP/ROP', path: '/mcop-hub/sop-rop' },
-        { title: 'Training', path: '/mcop-hub/training' }
-      ]
+        { title: "Spotlight", path: "/spotlight" },
+      ],
     },
     { 
       title: 'Partner',
@@ -71,8 +74,7 @@ const Navbar = () => {
     setIsOpen(false);
   };
 
-  const handleDropdownToggle = (title, event) => {
-    event.stopPropagation();
+  const handleDropdownToggle = (title) => {
     setActiveDropdown(activeDropdown === title ? null : title);
   };
 
@@ -86,10 +88,10 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6">
-            {navItems.map((item) => (
+            {navItems && navItems.length > 0 ? navItems.map((item) => (
               <div key={item.title} className="relative nav-dropdown">
                 <button
-                  onClick={(e) => handleDropdownToggle(item.title, e)}
+                  onClick={() => handleDropdownToggle(item.title)}
                   className="flex items-center text-white hover:text-blue-400 transition-colors duration-300"
                 >
                   {item.title}
@@ -98,7 +100,7 @@ const Navbar = () => {
                   }`} />
                 </button>
 
-                {activeDropdown === item.title && (
+                {activeDropdown === item.title && item.dropdownItems && item.dropdownItems.length > 0 && (
                   <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50">
                     {item.dropdownItems.map((dropItem) => (
                       <button
@@ -112,7 +114,7 @@ const Navbar = () => {
                   </div>
                 )}
               </div>
-            ))}
+            )) : null}
           </div>
 
           {/* Mobile menu button */}
@@ -127,10 +129,10 @@ const Navbar = () => {
         {/* Mobile Navigation */}
         {isOpen && (
           <div className="md:hidden py-4 mobile-menu">
-            {navItems.map((item) => (
+            {navItems && navItems.length > 0 ? navItems.map((item) => (
               <div key={item.title} className="py-2">
                 <button
-                  onClick={(e) => handleDropdownToggle(item.title, e)}
+                  onClick={() => handleDropdownToggle(item.title)}
                   className="flex items-center justify-between w-full text-white hover:text-blue-400"
                 >
                   {item.title}
@@ -138,7 +140,7 @@ const Navbar = () => {
                     activeDropdown === item.title ? 'rotate-180' : ''
                   }`} />
                 </button>
-                {activeDropdown === item.title && (
+                {activeDropdown === item.title && item.dropdownItems && item.dropdownItems.length > 0 && (
                   <div className="pl-4 mt-2 space-y-2">
                     {item.dropdownItems.map((dropItem) => (
                       <button
@@ -152,7 +154,7 @@ const Navbar = () => {
                   </div>
                 )}
               </div>
-            ))}
+            )) : null}
           </div>
         )}
       </div>
